@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 <h2>Registrar Catequizado</h2>
-<form method="POST">
+<form action="/registrar" method="POST">
     <input type="text" name="nombre" placeholder="Nombre" required><br>
     <input type="text" name="apellido" placeholder="Apellido" required><br>
-    <input type="number" name="edad" placeholder="Edad" required><br>
-    <input type="text" name="grupo" placeholder="Grupo" required><br>
-    <input type="email" name="correo" placeholder="Correo" required><br>
+    <input type="date" name="fecha_nacimiento" placeholder="Fecha de nacimiento" required><br>
+    <input type="date" name="fe_bautizmo" placeholder="Fecha de bautismo" required><br>
+    <input type="email" name="correo_contacto" placeholder="Correo de contacto" required><br>
     <button type="submit">Registrar</button>
 </form>
+
 {% endblock %}

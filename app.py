@@ -1,53 +1,53 @@
 from flask import Flask, render_template, request, redirect
 import pyodbc
-import json
 
 app = Flask(__name__)
 
-# Conexión desde config.json
-with open('config.json') as config_file:
-    config = json.load(config_file)
-
-connection_string = (
-    f"DRIVER={config['driver']};"
-    f"SERVER={config['server']};"
-    f"DATABASE={config['database']};"
-    f"UID={config['user']};"
-    f"PWD={config['password']};"
-    f"TrustServerCertificate=yes"
+# Configuración conexión SQL Server
+conn = pyodbc.connect(
+    'DRIVER={ODBC Driver 17 for SQL Server};'
+    'SERVER=localhost;'
+    'DATABASE=ParroquiasEclesiales;'
+    'UID=sa;'
+    'PWD=15987352'
 )
-
-conexion = pyodbc.connect(connection_string)
+cursor = conn.cursor()
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 @app.route('/catequizados')
-def listar_catequizados():
-    cursor = conexion.cursor()
-    cursor.execute("SELECT * FROM CATEQUIZADO")
+def ver_catequizados():
+    cursor.execute("SELECT * FROM Catequizado")
     datos = cursor.fetchall()
-    return render_template('listar_catequizados.html', catequizados=datos)
+    return render_template("ver_catequizados.html", catequizados=datos)
 
-@app.route('/nuevo', methods=['GET', 'POST'])
+# ✅ Solo UNA función con la ruta /registrar
+@app.route('/registrar')
+def registrar():
+    return render_template('formulario_catequizado.html')  # ← usa el nombre correcto
+
+@app.route('/registrar', methods=['POST'])
 def nuevo_catequizado():
-    if request.method == 'POST':
-        nombre = request.form['nombre']
-        apellido = request.form['apellido']
-        edad = request.form['edad']
-        grupo = request.form['grupo']
-        correo = request.form['correo']
-        
-        cursor = conexion.cursor()
-        cursor.execute("""
-            INSERT INTO CATEQUIZADO (Nombre, Apellido, Edad, Grupo, Correo)
-            VALUES (?, ?, ?, ?, ?)
-        """, (nombre, apellido, edad, grupo, correo))
-        conexion.commit()
-        return redirect('/catequizados')
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
+    fecha_nacimiento = request.form['fecha_nacimiento']
+    fe_bautizmo = request.form['fe_bautizmo']
+    correo_contacto = request.form['correo_contacto']
 
-    return render_template('formulario_catequizado.html')
+    cursor.execute("""
+        INSERT INTO Catequizado (nombre, apellido, fecha_nacimiento, fe_bautizmo, correo_contacto)
+        VALUES (?, ?, ?, ?, ?)
+    """, (nombre, apellido, fecha_nacimiento, fe_bautizmo, correo_contacto))
+    conn.commit()
+
+    return redirect('/catequizados')
+
+# ✅ Ruta adicional: /nuevo redirige a /registrar
+@app.route('/nuevo')
+def redireccionar_a_formulario():
+    return redirect('/registrar')
 
 if __name__ == '__main__':
     app.run(debug=True)
