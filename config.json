@@ -1,0 +1,8 @@
+{
+  "driver": "{ODBC Driver 17 for SQL Server}",
+  "server": "MATEO",
+  "database": "ParroquiasEclesiales",
+  "user": "sa",
+  "password": "15987352"
+}
+
