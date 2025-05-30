@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editar Catequizado</h2>
+<form method="POST">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" value="{{ c.nombre }}" required><br>
+
+    <label for="apellido">Apellido:</label>
+    <input type="text" name="apellido" value="{{ c.apellido }}" required><br>
+
+    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+    <input type="date" name="fecha_nacimiento" value="{{ c.fecha_nacimiento|safe }}"><br>
+
+    <label for="fe_bautizmo">Fecha de Bautismo:</label>
+    <input type="date" name="fe_bautizmo" value="{{ c.fe_bautizmo|safe }}"><br>
+
+    <label for="correo_contacto">Correo:</label>
+    <input type="email" name="correo_contacto" value="{{ c.correo_contacto }}" required><br><br>
+
+    <button type="submit">Guardar Cambios</button>
+    <a href="/catequizados">Cancelar</a>
+</form>
+{% endblock %}

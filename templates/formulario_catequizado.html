@@ -1,13 +1,35 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Registrar Catequizado</h2>
-<form action="/registrar" method="POST">
-    <input type="text" name="nombre" placeholder="Nombre" required><br>
-    <input type="text" name="apellido" placeholder="Apellido" required><br>
-    <input type="date" name="fecha_nacimiento" placeholder="Fecha de nacimiento" required><br>
-    <input type="date" name="fe_bautizmo" placeholder="Fecha de bautismo" required><br>
-    <input type="email" name="correo_contacto" placeholder="Correo de contacto" required><br>
-    <button type="submit">Registrar</button>
-</form>
-
+<div style="max-width: 600px; margin: 40px auto; background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; color: #0d47a1; margin-bottom: 30px;">
+        📝 Registrar Nuevo Catequizado
+    </h2>
+    <form action="/registrar" method="post">
+        <div style="margin-bottom: 20px;">
+            <label for="nombre" style="display: block; margin-bottom: 5px;">Nombre:</label>
+            <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ej: Juan" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label for="apellido" style="display: block; margin-bottom: 5px;">Apellido:</label>
+            <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ej: Pérez" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label for="fecha_nacimiento" style="display: block; margin-bottom: 5px;">Fecha de Nacimiento:</label>
+            <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" class="form-control" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        </div>
+        <div style="margin-bottom: 20px;">
+            <label for="fe_bautizmo" style="display: block; margin-bottom: 5px;">Fecha de Bautismo:</label>
+            <input type="date" name="fe_bautizmo" id="fe_bautizmo" class="form-control" style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        </div>
+        <div style="margin-bottom: 25px;">
+            <label for="correo_contacto" style="display: block; margin-bottom: 5px;">Correo de contacto:</label>
+            <input type="email" name="correo_contacto" id="correo_contacto" class="form-control" placeholder="Ej: nombre@ejemplo.com" required style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
+        </div>
+        <div style="text-align: center;">
+            <button type="submit" style="padding: 12px 25px; background-color: #0d47a1; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
+                ✅ Registrar Catequizado
+            </button>
+        </div>
+    </form>
+</div>
 {% endblock %}

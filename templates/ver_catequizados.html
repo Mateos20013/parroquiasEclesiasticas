@@ -2,23 +2,32 @@
 {% block content %}
 <h2>Catequizados Registrados</h2>
 <table border="1">
-<tr>
-    <th>ID</th>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Fecha de Nacimiento</th>
-    <th>Fecha de Bautismo</th>
-    <th>Correo</th>
-</tr>
-{% for c in catequizados %}
-<tr>
-    <td>{{ c[0] }}</td>  
-    <td>{{ c[1] }}</td>  
-    <td>{{ c[2] }}</td>  
-    <td>{{ c[3] }}</td>  
-    <td>{{ c[4] }}</td>  
-    <td>{{ c[5] }}</td>  
-</tr>
-{% endfor %}
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Correo</th>
+        <th>Fecha de Bautismo</th>
+        <th>ID</th>
+        <th>Acciones</th>
+    </tr>
+    {% for c in catequizados %}
+    <tr>
+        <td>{{ c[0] }}</td>
+        <td>{{ c[1] }}</td>
+        <td>{{ c[2] }}</td>
+        <td>{{ c[3] }}</td>
+        <td>{{ c[4] }}</td>
+        <td>{{ c[5] }}</td>
+        <td>
+            <a href="{{ url_for('editar_catequizado', id=c[5]) }}">
+                <button style="background-color: orange;">Modificar</button>
+            </a>
+            <a href="{{ url_for('eliminar_catequizado', id=c[5]) }}" onclick="return confirm('¿Estás seguro de eliminar este registro?');">
+                <button style="background-color: red; color: white;">Eliminar</button>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
 </table>
 {% endblock %}

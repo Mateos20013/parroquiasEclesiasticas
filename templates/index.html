@@ -1,6 +1,26 @@
 {% extends 'base.html' %}
-
 {% block content %}
-    <h2>Bienvenido al Sistema Parroquial</h2>
-    <p>Selecciona una opción del menú para comenzar.</p>
+<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 80vh; padding: 20px;">
+    <div style="max-width: 900px; width: 100%; background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center;">
+        <h1 style="font-size: 2.5rem; color: #0d47a1; margin-bottom: 20px;">
+            🙏 Bienvenido al Sistema de Gestión Parroquial
+        </h1>
+        <p style="font-size: 1.1rem; color: #333; margin-bottom: 30px;">
+            Este sistema te permite registrar, consultar y administrar los datos de los catequizados de manera eficiente, segura y centralizada.
+        </p>
+
+        <div style="display: flex; justify-content: center; gap: 40px; margin-top: 20px;">
+            <a href="/catequizados" style="text-decoration: none;">
+                <div style="background: #0d47a1; color: white; padding: 15px 30px; border-radius: 8px; font-size: 1.1rem; transition: background 0.3s;">
+                    📄 Ver Catequizados
+                </div>
+            </a>
+            <a href="/registrar" style="text-decoration: none;">
+                <div style="background: #2e7d32; color: white; padding: 15px 30px; border-radius: 8px; font-size: 1.1rem; transition: background 0.3s;">
+                    ➕ Registrar Nuevo
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
 {% endblock %}
